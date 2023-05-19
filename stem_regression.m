@@ -2,14 +2,27 @@ clc
 clear all
 close all
 
-y = [15.6;21.7;3.1;14.7;6.9;16.1;7.5;16.1;20.2;13.3;15.0;23.3];
-N = length(y);
-n = 3;
+% All data ranges from 2000 to 2020. Conflict represents the number of 
+% ongoing global state conflicts. House represents the percentage
+% of the House of Representatives controlled by Democrats. Income
+% represents the median income. Poverty represents the percentage of the US
+% population under the poverty line. Senate measures the percentage of the
+% Senate controlled by Democrats. Spending is the annual US spending on
+% science, space, and technology. 
 
-X = zeros(N,n);
-X(:,1) = [2;3.6;0.9;2.4;0.1;2.6;0.7;1;2.4;1.9;2.3;3.9];
-X(:,2) = [4.7;5.7;1.6;4.8;4.4;6;2.6;5.7;4.5;5;4.8;6.9];
-X(:,3) = [2.9;4.9;1.4;3.3;1.6;3.7;1.6;3;3.1;3.4;3.3;4.8];
+load('conflict')
+load('house')
+load('income')
+load('poverty')
+load('senate')
+load('spending')
+load('stemDeg')
+
+y = spending;
+N = length(y);
+n = 5;
+
+X = [conflict;house;income;poverty;senate];
 
 A = [ones(N,1),X];
 
